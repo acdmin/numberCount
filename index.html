@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>numberCount-数字累计原生js版</title>
+    <script type="text/javascript" src="numberCount.js"></script>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script type="text/javascript">
+        window.onload = function(){
+            let oLi = document.querySelectorAll('li'),
+                counterArr = [];
+            for (let i = 0, len = oLi.length; i < len; i++) {
+                const element = oLi[i];
+                counterArr.push(
+                    new NumberCount({
+                        element: element, //挂载的dom对象
+                        to: Math.floor( Math.random()*1000 ), //初始数
+                        onRenderStart(){}, //开始动画执行
+                        onRenderEnd(){ //结束动画执行
+                            setTimeout(() => {
+                                counterArr[i].rise(Math.floor( Math.random()*500-250 )) //增加的数 参数为增加的幅度 正负均可
+                            }, 3000);
+                        }
+                    })
+                )
+            }
+        }
+    </script>
+</body>
+</html>
